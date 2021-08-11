@@ -1,0 +1,139 @@
+<html
+    window-width="800dip"
+    window-height="700dip"
+>
+<head>
+<style>
+
+@import url(css/controls.css);
+@import url(vendor/8ctopus/sciter-logger/src/logger.css);
+
+body {
+    border-spacing: 10dip;
+}
+
+toggle,
+select {
+    display: block;
+}
+
+</style>
+<script type="module">
+
+import {logger} from "vendor/8ctopus/sciter-logger/src/logger.js";
+import * as utils from "vendor/8ctopus/sciter-utils/src/utils.js";
+
+// initialize logger
+logger.init("", true);
+
+// attach logger to console
+logger.attach();
+
+// capture unhandled exceptions
+logger.capture();
+
+document.on("ready", function() {
+    // subscribe to logger messages
+    logger.subscribe(function(level, message) {
+        const log = document.$("plaintext#logger");
+
+        log.append(JSX(level, {}, [message]));
+
+        // scroll to last item
+        log.lastElementChild.scrollIntoView({behavior: "smooth"});
+    });
+
+    // center window on screen
+    utils.centerWindow("screen");
+
+    // add support for F5 reload
+    utils.addReloadWindow();
+
+    // close window on escape key press
+    utils.closeWindowOnEscape();
+
+    // bring window to front
+    utils.windowToFront();
+
+    // focus window
+    utils.focusWindow();
+
+    // log sciter version
+    console.debug(utils.sciterInfo());
+    console.line();
+
+    console.debug("first focusable element - " + Window.this.focusable("first").tag);
+    console.debug("last focusable element - " + Window.this.focusable("last").tag);
+    console.line();
+
+    console.debug("next focusable element - " + Window.this.focusable("next").tag);
+    console.debug("previous focusable element - " + Window.this.focusable("prior").tag);
+    console.line();
+
+    console.debug("next focusable element from toggle - " + Window.this.focusable("next", document.$("toggle")).tag);
+    console.debug("previous focusable element from toggle - " + Window.this.focusable("prior", document.$("toggle")).tag);
+    console.line();
+});
+
+// focusin and focusout is for window
+document.on("focusin focusout", function(event, object) {
+    console.debug(`${event.type} ${typeof object}`);
+
+    // what object type is it?
+
+    for (let property in object)
+        console.debug(property);
+
+//    console.debug(object.name);
+//    console.debug(object.constructor.name);
+//    console.debug(Object.getOwnPropertyNames(element));
+});
+
+// focus and blur are for window elements
+document.on("focus blur", function(event, element) {
+    console.debug(`${event.type} ${element.tag}`);
+
+    //for (var name in element)
+    //    console.debug(name);
+});
+
+</script>
+</head>
+<body>
+    <button>Do it!</button>
+
+    <editbox value="foo" placeholder="input with content" maxlength=6 filter="a~z" spellcheck="yes" />
+
+    <input|number value="42" step="1" min="0" max="999" placeholder="number1" />
+
+    <radio (rgroup) checked value="true" as="string">Yes</radio>
+    <radio (rgroup) value="false" as="string">No</radio>
+    <radio (rgroup) value="null" as="string">Undefined</radio>
+
+    <checkbox checked>Checked</checkbox>
+    <checkbox disabled checked value="a">Disabled (Checked)</checkbox>
+
+    <toggle (foo) checked>
+        <option>No</option>
+        <option>Yes</option>
+    </toggle>
+
+    <select|switch>
+        <option>Left</option>
+        <option>Center</option>
+        <option>Right</option>
+    </select>
+
+    <select|dropdown novalue="dropdown">
+        <option>Apple</option>
+        <option>Apricot</option>
+        <option>Currant</option>
+        <option>Grapefruit</option>
+        <option>Peach</option>
+        <option>Pomegranate</option>
+        <option>Tamarind</option>
+    </select>
+
+    <plaintext #logger readonly />
+</body>
+</html>
