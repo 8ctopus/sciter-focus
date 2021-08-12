@@ -78,6 +78,10 @@ document.on("ready", function() {
     console.debug("previous focusable element from toggle - " + Window.this.focusable("prior", document.$("toggle")).tag);
     console.line();
 
+    console.debug("next focusable element from input - " + Window.this.focusable("next", document.$("input")).tag);
+    console.debug("previous focusable element from input - " + Window.this.focusable("prior", document.$("input")).tag);
+    console.line();
+
     console.debug("next focusable element from div - " + Window.this.focusable("next", document.$("div#test")).tag);
     console.debug("previous focusable element from div - " + Window.this.focusable("prior", document.$("div#test")).tag);
     console.line();
