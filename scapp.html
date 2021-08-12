@@ -12,6 +12,10 @@ body {
     border-spacing: 10dip;
 }
 
+div {
+    border: 1dip solid gray;
+}
+
 toggle,
 select {
     display: block;
@@ -73,6 +77,10 @@ document.on("ready", function() {
     console.debug("next focusable element from toggle - " + Window.this.focusable("next", document.$("toggle")).tag);
     console.debug("previous focusable element from toggle - " + Window.this.focusable("prior", document.$("toggle")).tag);
     console.line();
+
+    console.debug("next focusable element from div - " + Window.this.focusable("next", document.$("div#test")).tag);
+    console.debug("previous focusable element from div - " + Window.this.focusable("prior", document.$("div#test")).tag);
+    console.line();
 });
 
 // focusin and focusout is for window
@@ -106,17 +114,19 @@ document.on("focus blur", function(event, element) {
 
     <input|number value="42" step="1" min="0" max="999" placeholder="number1" />
 
-    <radio (rgroup) checked value="true" as="string">Yes</radio>
-    <radio (rgroup) value="false" as="string">No</radio>
-    <radio (rgroup) value="null" as="string">Undefined</radio>
+    <div #test>
+        <radio (rgroup) checked value="true" as="string">Yes</radio>
+        <radio (rgroup) value="false" as="string">No</radio>
+        <radio (rgroup) value="null" as="string">Undefined</radio>
 
-    <checkbox checked>Checked</checkbox>
-    <checkbox disabled checked value="a">Disabled (Checked)</checkbox>
+        <checkbox checked>Checked</checkbox>
+        <checkbox disabled checked value="a">Disabled (Checked)</checkbox>
 
-    <toggle (foo) checked>
-        <option>No</option>
-        <option>Yes</option>
-    </toggle>
+        <toggle (foo) checked>
+            <option>No</option>
+            <option>Yes</option>
+        </toggle>
+    </div>
 
     <select|switch>
         <option>Left</option>
