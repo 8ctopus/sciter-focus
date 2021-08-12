@@ -70,21 +70,26 @@ document.on("ready", function() {
     console.debug("last focusable element - " + Window.this.focusable("last").tag);
     console.line();
 
-    console.debug("next focusable element - " + Window.this.focusable("next").tag);
-    console.debug("previous focusable element - " + Window.this.focusable("prior").tag);
+    console.debug("previous focusable element from focused - " + Window.this.focusable("prior").tag);
+    console.debug("next focusable element from focused - " + Window.this.focusable("next").tag);
     console.line();
 
-    console.debug("next focusable element from toggle - " + Window.this.focusable("next", document.$("toggle")).tag);
     console.debug("previous focusable element from toggle - " + Window.this.focusable("prior", document.$("toggle")).tag);
+    console.debug("next focusable element from toggle - " + Window.this.focusable("next", document.$("toggle")).tag);
     console.line();
 
-    console.debug("next focusable element from input - " + Window.this.focusable("next", document.$("input")).tag);
     console.debug("previous focusable element from input - " + Window.this.focusable("prior", document.$("input")).tag);
+    console.debug("next focusable element from input - " + Window.this.focusable("next", document.$("input")).tag);
     console.line();
 
-    console.debug("next focusable element from div - " + Window.this.focusable("next", document.$("div#test")).tag);
     console.debug("previous focusable element from div - " + Window.this.focusable("prior", document.$("div#test")).tag);
+    console.debug("next focusable element from div - " + Window.this.focusable("next", document.$("div#test")).tag);
     console.line();
+
+    console.debug("previous focusable element from br - " + Window.this.focusable("prior", document.$("br")).tag);
+    console.debug("next focusable element from br - " + Window.this.focusable("next", document.$("br")).tag);
+    console.line();
+
 });
 
 // focusin and focusout is for window
@@ -115,6 +120,8 @@ document.on("focus blur", function(event, element) {
     <button>Do it!</button>
 
     <editbox value="foo" placeholder="input with content" maxlength=6 filter="a~z" spellcheck="yes" />
+
+    <br tabindex="0">
 
     <input|number value="42" step="1" min="0" max="999" placeholder="number1" />
 
