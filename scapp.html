@@ -3,6 +3,7 @@
     window-height="700dip"
 >
 <head>
+<title>sciter focus demo</title>
 <style>
 
 @import url(css/controls.css);
@@ -40,14 +41,14 @@ document.on("ready", function() {
     // subscribe to logger messages
     logger.plaintext(document.$("plaintext#logger"));
 
-    // center window on screen
-    utils.centerWindow("screen");
-
     // add support for F5 reload
     utils.addReloadWindow();
 
     // close window on escape key press
     utils.closeWindowOnEscape();
+
+    // center window on screen
+    utils.centerWindow("screen");
 
     // bring window to front
     utils.windowToFront();
