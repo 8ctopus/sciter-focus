@@ -9,3 +9,7 @@ Playing with focus in sciter.js
 - install packages `php spm.phar install`
 - run `scapp.bat`
 - to refresh the app after changes to the html/css click `F5`
+
+## todo
+
+- investigate how to use :focusable
