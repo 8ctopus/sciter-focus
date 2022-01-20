@@ -7,7 +7,7 @@
 <style>
 
 @import url(css/controls.css);
-@import url(vendor/8ctopus/sciter-logger/src/logger.css);
+@import url(node_modules/sciter-logger/src/logger.css);
 
 body {
     border-spacing: 10dip;
@@ -25,36 +25,33 @@ select {
 </style>
 <script type="module">
 
-import {logger} from "vendor/8ctopus/sciter-logger/src/logger.js";
-import * as utils from "vendor/8ctopus/sciter-utils/src/utils.js";
+import Logger from "node_modules/sciter-logger/src/logger.js";
+import * as Utils from "node_modules/sciter-utils/src/utils.js";
 
 // initialize logger
-logger.init();
+Logger.init();
 
-// attach logger to console
-logger.attach();
+// attach Logger.to console
+Logger.attach();
 
 // capture unhandled exceptions
-logger.capture(unhandledExceptionHandler);
+Logger.capture();
 
 document.on("ready", function() {
-    // subscribe to logger messages
-    logger.plaintext(document.$("plaintext#logger"));
+    // subscribe to Logger.messages
+    Logger.plaintext(document.$("plaintext#logger"));
 
     // log sciter version
-    console.debug(utils.sciterInfo());
+    console.debug(Utils.sciterInfo());
 
     // add support for F5 reload
-    utils.addReloadWindow();
+    Utils.addReloadWindow();
 
     // close window on escape key press
-    utils.closeWindowOnEscape(Window.this);
+    Utils.closeWindowOnEscape(Window.this);
 
     // center window on screen
-    utils.centerWindow(Window.this, "screen");
-
-    // bring window to front
-    //utils.windowToFront(Window.this);
+    Utils.centerWindow(Window.this, "screen");
 
     // bring window to front and set input focus
     Window.this.activate(true);
@@ -107,16 +104,6 @@ document.on("focus blur", function(event, element) {
     //for (var name in element)
     //    console.debug(name);
 });
-/**
- * Unhandled exception handler
- * @param  Error|String e
- * @return void
- */
-function unhandledExceptionHandler(e)
-{
-    // log exception using exception if it exists, error otherwise
-    typeof console.exception === "function" ? console.exception(e) : console.error(e);
-}
 
 </script>
 </head>
