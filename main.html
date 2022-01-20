@@ -37,7 +37,7 @@ logger.attach();
 // capture unhandled exceptions
 logger.capture(unhandledExceptionHandler);
 
-document.ready = function() {
+document.on("ready", function() {
     // subscribe to logger messages
     logger.plaintext(document.$("plaintext#logger"));
 
@@ -84,7 +84,7 @@ document.ready = function() {
     console.debug("previous focusable element from br - " + Window.this.focusable("prior", document.$("br")).tag);
     console.debug("next focusable element from br - " + Window.this.focusable("next", document.$("br")).tag);
     console.line();
-}
+});
 
 // focusin and focusout is for window
 document.on("focusin focusout", function(event, object) {
