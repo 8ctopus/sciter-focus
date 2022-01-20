@@ -88,7 +88,7 @@ document.on("focusin focusout", function(event, object) {
     console.debug(`${event.type} ${typeof object}`);
 
     // what object type is it?
-    for (let property in object)
+    for (const property in object)
         console.debug(property);
 
 //    console.debug(object.name);
