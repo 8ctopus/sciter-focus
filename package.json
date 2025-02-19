@@ -1,6 +1,6 @@
 {
   "name": "sciter-focus",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Playing with element focus in sciter.js",
   "scripts": {
     "install-sdk": "node ./node_modules/sciter-sandbox/scripts/install.mjs cleanup",
